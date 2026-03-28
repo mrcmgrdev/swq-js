@@ -55,7 +55,7 @@ npm run build
 
 ## Code Formatting
 
-This project uses [Prettier](https://prettier.io/) with the [Tailwind CSS plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) for automatic class sorting.
+This project uses [Prettier](https://prettier.io/) with the [Tailwind CSS plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) for automatic class sorting. [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) is included to disable all ESLint rules that conflict with Prettier.
 
 Check formatting:
 
@@ -67,6 +67,26 @@ Auto-fix formatting:
 
 ```bash
 npm run format
+```
+
+## Linting
+
+This project uses [ESLint 9](https://eslint.org/) with a flat config (`eslint.config.js`) for static analysis. The config includes:
+
+- [@eslint/js](https://www.npmjs.com/package/@eslint/js) — recommended JavaScript rules
+- [typescript-eslint](https://typescript-eslint.io/) — TypeScript-specific rules
+- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) — enforces the Rules of Hooks
+
+Run linting:
+
+```bash
+npm run lint
+```
+
+Auto-fix lint issues:
+
+```bash
+npm run lint:fix
 ```
 
 ## Styling
