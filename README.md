@@ -53,6 +53,21 @@ npm run typecheck
 npm run build
 ```
 
+## Code Formatting
+
+This project uses [Prettier](https://prettier.io/) with the [Tailwind CSS plugin](https://github.com/tailwindlabs/prettier-plugin-tailwindcss) for automatic class sorting.
+
+Check formatting:
+
+```bash
+npm run format:check
+```
+
+Auto-fix formatting:
+
+```bash
+npm run format
+```
 
 ## Styling
 
