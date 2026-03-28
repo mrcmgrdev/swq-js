@@ -89,6 +89,10 @@ Auto-fix lint issues:
 npm run lint:fix
 ```
 
+## Git Hooks
+
+A [Husky](https://typicode.github.io/husky/) **pre-commit hook** runs [lint-staged](https://github.com/lint-staged/lint-staged) before every commit, which automatically applies ESLint fixes and Prettier formatting to staged files. Hooks are installed automatically via the `prepare` script on `npm install` — no manual setup needed.
+
 ## Styling
 
 This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
