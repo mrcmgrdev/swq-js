@@ -8,10 +8,15 @@ A modern, production-ready full-stack React application built with:
 - **TailwindCSS** for styling
 - **Docker** for containerized deployment
 
+## Features
+
+- **Tenant Management** — create tenants via a form at `/tenants`, backed by the [tenant-swq](../tenant-swq) Spring Boot API (`POST /api/v1/tenants`)
+
 ## Prerequisites
 
 - **nvm** — used to install the required Node.js version. See [nvm-sh/nvm](https://github.com/nvm-sh/nvm) for installation instructions.
 - **A container runtime** (optional, for Docker deployment) — such as [Docker Desktop](https://www.docker.com/products/docker-desktop/), [Podman](https://podman.io/), [Rancher Desktop](https://rancherdesktop.io/), or [OrbStack](https://orbstack.dev/) (macOS)
+- **tenant-swq backend** — must be running on `http://localhost:8080` for the tenant feature to work. See [tenant-swq README](../tenant-swq/README.md) for setup instructions.
 
 ## Getting Started
 
@@ -25,13 +30,21 @@ nvm install
 
 This reads the `.nvmrc` file and installs the correct Node.js version automatically.
 
-### 2. Install dependencies
+### 2. Install Playwright
+
+The project requires **playwright** for testing. With npx installed, simply run:
+
+```bash
+npx playwright install
+```
+
+### 3. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Start the development server
+### 4. Start the development server
 
 Start the development server with HMR:
 
@@ -41,16 +54,34 @@ npm run dev
 
 Your application will be available at `http://localhost:5173`.
 
-### 4. Run type checking
+### 5. Run type checking
 
 ```bash
 npm run typecheck
 ```
 
-### 5. Build for production
+### 6. Build for production
 
 ```bash
 npm run build
+```
+
+## Testing
+
+### Unit Tests
+
+This project uses [Vitest](https://vitest.dev/) with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for unit tests.
+
+```bash
+npm test
+```
+
+### E2E Tests
+
+This project uses [Playwright](https://playwright.dev/) for end-to-end acceptance tests. The backend must be running for e2e tests.
+
+```bash
+npm run e2e
 ```
 
 ## Code Formatting
