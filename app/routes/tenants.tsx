@@ -6,7 +6,7 @@ export default function Tenants() {
 
   async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    const response = await fetch("http://localhost:8080/api/v1/tenants", {
+    const response = await fetch("http://localhost:8080/api/1/tenants", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

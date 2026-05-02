@@ -35,7 +35,7 @@ describe("Tenants Page", () => {
     });
 
     expect(mockFetch).toHaveBeenCalledWith(
-      "http://localhost:8080/api/tenants",
+      "http://localhost:8080/api/1/tenants",
       expect.objectContaining({
         method: "POST",
         body: JSON.stringify({ name: "My Company" }),
