@@ -1,4 +1,5 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import Tenants from "../app/routes/tenants";
 
@@ -15,6 +16,7 @@ describe("Tenants Page", () => {
   });
 
   it("sends tenant name to API and shows success message", async () => {
+    const user = userEvent.setup();
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ id: 1, name: "My Company" }),
@@ -23,15 +25,11 @@ describe("Tenants Page", () => {
 
     render(<Tenants />);
 
-    fireEvent.change(screen.getByLabelText("Tenant Name"), {
-      target: { value: "My Company" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "Senden" }));
+    await user.type(screen.getByLabelText("Tenant Name"), "My Company");
+    await user.click(screen.getByRole("button", { name: "Senden" }));
 
     await waitFor(() => {
-      expect(
-        screen.getByText("Tenant erstellt: My Company"),
-      ).toBeInTheDocument();
+      expect(screen.getByText("Tenant erstellt: My Company")).toBeInTheDocument();
     });
 
     expect(mockFetch).toHaveBeenCalledWith(
