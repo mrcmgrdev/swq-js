@@ -4,6 +4,21 @@ export default function Tenants() {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const response = await fetch("http://localhost:8080/api/v1/tenants", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setMessage(`Tenant erstellt: ${data.name}`);
+    }
+  }
+
   return (
     <div>
       <h1>Tenant erstellen</h1>
