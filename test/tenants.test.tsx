@@ -33,11 +33,33 @@ describe("Tenants Page", () => {
     });
 
     expect(mockFetch).toHaveBeenCalledWith(
-      "http://localhost:8080/api/1/tenants",
+      "http://localhost:8080/api/v1/tenants",
       expect.objectContaining({
         method: "POST",
         body: JSON.stringify({ name: "My Company" }),
       }),
     );
+  });
+
+  it("clears input after successful submission", async () => {
+    const user = userEvent.setup();
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: () => Promise.resolve({ id: 1, name: "Test" }),
+      }),
+    );
+
+    render(<Tenants />);
+
+    const input = screen.getByLabelText("Tenant Name") as HTMLInputElement;
+    await user.type(input, "Test");
+    await user.click(screen.getByRole("button", { name: "Senden" }));
+
+    await waitFor(() => {
+      expect(screen.getByText("Tenant erstellt: Test")).toBeInTheDocument();
+    });
+    expect(input.value).toBe("");
   });
 });
