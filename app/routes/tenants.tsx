@@ -16,6 +16,7 @@ export default function Tenants() {
     if (response.ok) {
       const data = await response.json();
       setMessage(`Tenant erstellt: ${data.name}`);
+      setName("");
     }
   }
 
